@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teton Reach — Done-for-You Cold Calling</title>
+    <meta name="description" content="Teton Reach handles the training, hiring, and lead generation so you can focus on closing deals. Scale your book of business hands-off.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Ambient Floating Orbs Background -->
+    <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+    <!-- Aurora gradient strip -->
+    <div class="aurora-strip"></div>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation Arrows -->
+    <button class="nav-arrow nav-prev" id="prevBtn" aria-label="Previous slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="nav-arrow nav-next" id="nextBtn" aria-label="Next slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+
+    <!-- Slide Indicator Dots -->
+    <nav class="slide-dots" id="slideDots" aria-label="Slide navigation"></nav>
+
+    <!-- Slide Deck -->
+    <div class="deck" id="deck">
+
+        <!-- ============ SLIDE 1: HERO ============ -->
+        <section class="slide" data-slide="1">
+            <div class="slide-mountain-bg"></div>
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="brand-tag">BPO SERVICES FOR GROWING BUSINESSES</span>
+                </div>
+                <div class="hero-content">
+                    <p class="hero-eyebrow">DONE-FOR-YOU PROSPECTING</p>
+                    <h1 class="hero-title">Done-for-you cold calling<br><span class="hero-highlight">that fills your calendar.</span></h1>
+                    <p class="hero-sub">Training, hiring, and lead generation are handled end-to-end so you can focus on closing deals. <strong>Scale your book of business hands-off.</strong></p>
+                    <div class="hero-cta-row">
+                        <a href="#" class="cta-btn" id="heroCtaBtn">Book Your Strategy Call →</a>
+                        <span class="hero-cta-note">✓ No obligation &nbsp; ✓ Free consultation</span>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">$10<span class="hero-stat-unit">/hr</span></span>
+                        <span class="hero-stat-label">COST EFFICIENCY</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">12k</span>
+                        <span class="hero-stat-label">DATA ADDRESSES</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">20–30</span>
+                        <span class="hero-stat-label">LEADS / MONTH</span>
+                    </div>
+                    <div class="hero-stat hero-stat--accent">
+                        <span class="hero-stat-value">6–8x <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11V3M3 7l4-4 4 4"/></svg></span>
+                        <span class="hero-stat-label">AVERAGE ROI</span>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="footer-left">
+                    <span class="brand-mark">Teton Reach</span>
+                </div>
+                <div class="footer-right">
+                    <span class="slide-date">April 2026</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 2: PROBLEM ============ -->
+        <section class="slide" data-slide="2">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">A CURRENT REALITY</span>
+                </div>
+                <h2 class="slide-header">Prospecting is <span class="text-gradient">Broken</span></h2>
+                <p class="slide-subheader">Most businesses are stuck in a manual cycle that kills productivity and limits growth.</p>
+                <div class="problem-grid spot-grid" id="problemGrid">
+                    <div class="problem-card spot-card">
+                        <div class="problem-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <circle cx="14" cy="14" r="11"/>
+                                <path d="M14 8v6l4 3"/>
+                            </svg>
+                        </div>
+                        <h4>Time Theft</h4>
+                        <p>Business owners spend 40% of their day dialing instead of closing—burning hours on low-conversion activity.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <polyline points="4,20 8,10 14,18 20,6 24,14"/>
+                                <line x1="4" y1="24" x2="24" y2="24"/>
+                            </svg>
+                        </div>
+                        <h4>Feast or Famine</h4>
+                        <p>One good month, one dead month. Inconsistent pipeline = unpredictable income.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <circle cx="14" cy="10" r="5"/>
+                                <path d="M6 24c0-5 4-8 8-8s8 3 8 8"/>
+                            </svg>
+                        </div>
+                        <h4>The "Second Job"</h4>
+                        <p>Managing in-house callers means HR headaches, training, turnover, and constant oversight.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <rect x="4" y="4" width="20" height="16" rx="2"/>
+                                <path d="M4 10h20"/>
+                                <path d="M10 13h8"/>
+                            </svg>
+                        </div>
+                        <h4>Tech Headaches</h4>
+                        <p>Complex dialers, CRM issues, data imports — all eating time that should go toward deals.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <path d="M14 4v10l-6 6"/>
+                                <circle cx="14" cy="14" r="10"/>
+                                <path d="M18 22l-4-4"/>
+                            </svg>
+                        </div>
+                        <h4>The Leaky Bucket</h4>
+                        <p>Without follow-up, warm leads go cold fast. No system = lost deals and wasted data.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">02</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 3: ON-DEMAND TEAM ============ -->
+        <section class="slide" data-slide="3">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">THE TETON REACH MODEL</span>
+                </div>
+                <h2 class="slide-header">Your On-Demand<br><span class="text-gradient">Inside Sales Team.</span></h2>
+                <div class="team-layout">
+                    <div class="team-features">
+                        <div class="team-feature">
+                            <div class="feature-icon-wrap">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--teton-accent)" stroke-width="1.5"><path d="M10 2l2 5h5l-4 3 1.5 5L10 12l-4.5 3 1.5-5-4-3h5z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Management Handled Completely</h4>
+                                <p>Every caller is managed every day. You never have to worry about performance, attendance, or training.</p>
+                            </div>
+                        </div>
+                        <div class="team-feature">
+                            <div class="feature-icon-wrap">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--teton-accent)" stroke-width="1.5"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>
+                            </div>
+                            <div>
+                                <h4>Focus on Closings, Not Dialing</h4>
+                                <p>Your inbox fills with qualified leads while you focus on what you do best — closing deals.</p>
+                            </div>
+                        </div>
+                        <div class="team-feature">
+                            <div class="feature-icon-wrap">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--teton-accent)" stroke-width="1.5"><rect x="2" y="5" width="16" height="10" rx="1"/><path d="M2 9h16"/></svg>
+                            </div>
+                            <div>
+                                <h4>100% Hands-Off Lead Gen</h4>
+                                <p>Data sourcing, dialing, qualifying, and booking — all handled from end to end.</p>
+                            </div>
+                        </div>
+                        <div class="team-feature">
+                            <div class="feature-icon-wrap">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--teton-accent)" stroke-width="1.5"><rect x="3" y="3" width="14" height="14" rx="1"/><path d="M3 7h14"/><path d="M7 7v10"/></svg>
+                            </div>
+                            <div>
+                                <h4>Zero Friction Booking</h4>
+                                <p>Appointments go straight to your calendar. Show up, present, close. Repeat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">03</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 4: END-TO-END EXECUTION ============ -->
+        <section class="slide" data-slide="4">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">A BUILT OUT SYSTEM</span>
+                </div>
+                <h2 class="slide-header">End-to-End <span class="text-gradient">Execution</span></h2>
+                <p class="slide-subheader">Every step of the prospecting lifecycle is handled so you can focus on appointments.</p>
+                <div class="execution-grid">
+                    <div class="exec-card">
+                        <div class="exec-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <rect x="4" y="4" width="24" height="24" rx="2"/>
+                                <line x1="4" y1="12" x2="28" y2="12"/>
+                                <line x1="12" y1="12" x2="12" y2="28"/>
+                            </svg>
+                        </div>
+                        <h4>Data & Targeting</h4>
+                        <p>Skip-traced, verified data lists custom-built around your target market and geography.</p>
+                    </div>
+                    <div class="exec-card">
+                        <div class="exec-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <path d="M16 4l3 8h8l-6.5 5 2.5 8L16 20l-7 5 2.5-8L5 12h8z"/>
+                            </svg>
+                        </div>
+                        <h4>Compliance & Safety</h4>
+                        <p>DNC scrubbing, TCPA adherence, and state-level compliance built into every campaign.</p>
+                    </div>
+                    <div class="exec-card">
+                        <div class="exec-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <circle cx="16" cy="16" r="12"/>
+                                <path d="M16 10v6l4 3"/>
+                            </svg>
+                        </div>
+                        <h4>High-Volume Dialing</h4>
+                        <p>Triple-line dialers with smart-connect technology reaching hundreds of contacts daily.</p>
+                    </div>
+                    <div class="exec-card">
+                        <div class="exec-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <path d="M12 16l3 3 6-6"/>
+                                <rect x="4" y="4" width="24" height="24" rx="2"/>
+                            </svg>
+                        </div>
+                        <h4>Deep Qualification</h4>
+                        <p>Multi-step qualification process ensures only genuinely interested prospects reach your calendar.</p>
+                    </div>
+                    <div class="exec-card">
+                        <div class="exec-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--teton-blue)" stroke-width="1.5">
+                                <rect x="5" y="4" width="22" height="24" rx="2"/>
+                                <line x1="10" y1="12" x2="22" y2="12"/>
+                                <line x1="10" y1="18" x2="22" y2="18"/>
+                                <line x1="10" y1="24" x2="18" y2="24"/>
+                            </svg>
+                        </div>
+                        <h4>Direct Appointments</h4>
+                        <p>Appointments go straight to your calendar. No gate-keeping, no middleman, no delays.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">04</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 5: OFFER AT A GLANCE ============ -->
+        <section class="slide" data-slide="5">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">YOUR RESULTS</span>
+                </div>
+                <h2 class="slide-header">The Offer at a <span class="text-gradient">Glance</span></h2>
+                <p class="slide-subheader">Everything you need to run a high-output prospecting operation, turnkey and ready.</p>
+                <div class="glance-grid">
+                    <div class="glance-card">
+                        <span class="glance-value">$10</span>
+                        <span class="glance-label">FLAT RATE / HR</span>
+                        <p>All-in cost. No hidden fees, no surprise charges. Simple, predictable pricing.</p>
+                    </div>
+                    <div class="glance-card">
+                        <span class="glance-value">12k</span>
+                        <span class="glance-label">DATA ADDRESSES</span>
+                        <p>Pre-built, skip-traced contact lists customized to your target market and geography.</p>
+                    </div>
+                    <div class="glance-card">
+                        <span class="glance-value">20–30</span>
+                        <span class="glance-label">LEADS PER MONTH</span>
+                        <p>Consistent monthly flow of qualified leads directly to your pipeline.</p>
+                    </div>
+                    <div class="glance-card glance-card--accent">
+                        <span class="glance-value">6–8x</span>
+                        <span class="glance-label">AVERAGE ROI</span>
+                        <p>Clients consistently see 6–8x returns on their monthly investment.</p>
+                    </div>
+                    <div class="glance-card">
+                        <span class="glance-value">100%</span>
+                        <span class="glance-label">READY TO ROLL</span>
+                        <p>Full onboarding in days, not weeks. Start generating leads almost immediately.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">05</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 6: PRICING ============ -->
+        <section class="slide" data-slide="6">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">ALL-IN PRICING</span>
+                </div>
+                <h2 class="slide-header">Simple, Transparent<br><span class="text-gradient">All-In Pricing.</span></h2>
+                <p class="slide-subheader">No à la carte, no add-ons, no surprise costs. One flat rate for a full-service BPO solution.</p>
+                <div class="pricing-layout">
+                    <div class="pricing-hero-card">
+                        <div class="pricing-card-badge">FULL SERVICE BPO</div>
+                        <div class="pricing-amount">
+                            <span class="pricing-dollar">$2,910</span>
+                            <span class="pricing-period">/ month</span>
+                        </div>
+                        <ul class="pricing-includes">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--teton-accent)" stroke-width="2"><path d="M4 8l3 3 5-5"/></svg>
+                                Dedicated Caller
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--teton-accent)" stroke-width="2"><path d="M4 8l3 3 5-5"/></svg>
+                                Data Included
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--teton-accent)" stroke-width="2"><path d="M4 8l3 3 5-5"/></svg>
+                                Professional Management & Training
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--teton-accent)" stroke-width="2"><path d="M4 8l3 3 5-5"/></svg>
+                                High-Volume Dialer Included
+                            </li>
+
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--teton-accent)" stroke-width="2"><path d="M4 8l3 3 5-5"/></svg>
+                                100% Quality Assurance
+                            </li>
+                        </ul>
+                        <p class="pricing-asterisk">*2-caller minimum required for the first month to launch your campaign. After month one, add or drop callers as needed.</p>
+                    </div>
+                    <div class="pricing-side">
+                        <div class="pricing-side-card">
+                            <h4>Scale to Demand</h4>
+                            <p>Need more capacity? Add additional callers at the same transparent rate. Scale up or down month-to-month.</p>
+                        </div>
+                        <div class="pricing-side-card">
+                            <h4>No Contracts</h4>
+                            <p>Month-to-month. Cancel anytime. Your business is earned every single month.</p>
+                        </div>
+                        <a href="#" class="cta-btn pricing-cta" id="pricingCtaBtn">Book Your Strategy Call →</a>
+                    </div>
+                </div>
+                <p class="pricing-volume-note">Looking to scale with 3+ callers? Custom volume pricing is available — <a href="#" class="cta-link">reach out</a> for a tailored rate.</p>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">06</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 7: ROI MATH ============ -->
+        <section class="slide" data-slide="7">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">THE NUMBERS</span>
+                </div>
+                <div class="roi-header-row">
+                    <h2 class="slide-header">The ROI <span class="text-gradient">Math</span></h2>
+                </div>
+                <p class="slide-subheader">Every $2,910 you invest turns into consistent, compounding revenue — tailored to your industry.</p>
+                <div class="vertical-tabs" id="verticalTabs">
+                    <button class="vtab active" data-vertical="roofing">Roofing</button>
+                    <button class="vtab" data-vertical="realestate">Realtors</button>
+                    <button class="vtab" data-vertical="wholesale">Wholesaling</button>
+                    <button class="vtab" data-vertical="solar">Solar</button>
+                    <button class="vtab" data-vertical="hvac">HVAC</button>
+                    <button class="vtab" data-vertical="landscape">Landscaping</button>
+                    <button class="vtab" data-vertical="pest">Pest Control</button>
+
+                </div>
+                <div class="roi-columns" id="roiContent"></div>
+                <div class="roi-calc" id="roiCalc">
+                    <div class="roi-calc-title">⚡ Calculate Your ROI</div>
+                    <div class="roi-calc-row" id="calcDealRow">
+                        <span class="roi-calc-label">Your Avg Deal Size</span>
+                        <input type="range" class="roi-calc-slider" id="calcDeal" min="500" max="100000" step="100" value="20000">
+                        <span class="roi-calc-value" id="calcDealVal">$20,000</span>
+                    </div>
+                    <div class="roi-calc-row">
+                        <span class="roi-calc-label">Your Close Rate</span>
+                        <input type="range" class="roi-calc-slider" id="calcRate" min="5" max="50" step="1" value="15">
+                        <span class="roi-calc-value" id="calcRateVal">15%</span>
+                    </div>
+                    <div class="roi-calc-row">
+                        <span class="roi-calc-label">Leads / Month</span>
+                        <input type="range" class="roi-calc-slider" id="calcLeads" min="15" max="40" step="1" value="25">
+                        <span class="roi-calc-value" id="calcLeadsVal">25</span>
+                    </div>
+                    <div class="roi-calc-row roi-calc-commission-row" id="calcCommissionRow" style="display:none;">
+                        <span class="roi-calc-label">Your Commission %</span>
+                        <input type="range" class="roi-calc-slider" id="calcCommission" min="5" max="100" step="1" value="60">
+                        <span class="roi-calc-value" id="calcCommissionVal">60%</span>
+                    </div>
+                    <div class="roi-calc-result">
+                        <span class="roi-calc-result-label">Projected Monthly Revenue</span>
+                        <span class="roi-calc-result-value" id="calcRevenue">$75,000</span>
+                    </div>
+                    <div class="roi-calc-roi" id="calcROI">That's a 25.8x return on your $2,910 investment</div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">07</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 8: ROADMAP ============ -->
+        <section class="slide" data-slide="8">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">A PROVEN PATH</span>
+                </div>
+                <h2 class="slide-header">From Kickoff to <span class="text-gradient">Scale</span></h2>
+                <p class="slide-subheader">A streamlined 8-step process gets your prospecting engine running from first call to full-scale operation.</p>
+                <div class="roadmap-grid">
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">01</div>
+                        <h4>Intro Call</h4>
+                        <p>Understand your market and goals</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">02</div>
+                        <h4>CRM Integration</h4>
+                        <p>Connect your systems seamlessly</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">03</div>
+                        <h4>Data Prep</h4>
+                        <p>Build targeted contact lists</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">04</div>
+                        <h4>Go Live</h4>
+                        <p>Callers start dialing your data</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">05</div>
+                        <h4>Daily Management</h4>
+                        <p>Performance tracking & QA</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">06</div>
+                        <h4>Weekly Reporting</h4>
+                        <p>Full transparent reporting</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">07</div>
+                        <h4>Scale</h4>
+                        <p>Add callers as pipeline grows</p>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-num">08</div>
+                        <h4>Repeat</h4>
+                        <p>Rinse & repeat — compounding returns</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">08</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 9: QUALITY ============ -->
+        <section class="slide" data-slide="9">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">A BUILT IN STANDARD</span>
+                </div>
+                <h2 class="slide-header">Quality & Compliance <span class="text-gradient">Built In</span></h2>
+                <p class="slide-subheader">Your brand is protected and your results are optimized with rigorous standards at every level.</p>
+                <div class="quality-grid">
+                    <div class="quality-card">
+                        <div class="quality-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><path d="M14 4v4"/><circle cx="14" cy="14" r="3"/></svg>
+                        </div>
+                        <h4>Top 1% Talent Sourcing</h4>
+                        <p>Callers are hired from the top 1% of applicants. A rigorous vetting process ensures only elite communicators represent your brand.</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5"><rect x="4" y="4" width="20" height="20" rx="2"/><path d="M8 12h12"/><path d="M8 16h8"/></svg>
+                        </div>
+                        <h4>Script Optimization</h4>
+                        <p>A/B tested scripts refined weekly for maximum conversion based on real-time performance data.</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><path d="M10 14l3 3 5-5"/></svg>
+                        </div>
+                        <h4>Recording & Scorecards</h4>
+                        <p>Every call recorded, scored, and reviewed. Full quality assurance and transparency built into every campaign.</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5"><path d="M14 4l3 8h8l-6.5 5 2.5 8L14 20l-7 5 2.5-8L3 12h8z"/></svg>
+                        </div>
+                        <h4>Standard Compliance</h4>
+                        <p>DNC, TCPA, and state-level regulatory compliance baked into every campaign from day one.</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5"><rect x="4" y="6" width="20" height="16" rx="2"/><path d="M4 12h20"/><path d="M10 18h8"/></svg>
+                        </div>
+                        <h4>Strict Lead Definitions</h4>
+                        <p>"Warm transfers" aren't counted as leads. You get genuinely qualified, appointment-ready prospects.</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--teton-blue)" stroke-width="1.5"><polyline points="4,20 8,14 14,16 20,8 24,4"/><path d="M4 24h20"/></svg>
+                        </div>
+                        <h4>Continuous Optimization</h4>
+                        <p>Scripts, targeting, and timing are refined continuously based on what's actually converting for you.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">09</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 10: COMMON QUESTIONS ============ -->
+        <section class="slide" data-slide="10">
+            <div class="slide-content">
+                <div class="brand-bar">
+                    <div class="brand-logo">
+                        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                    <span class="slide-label">YOUR QUESTIONS</span>
+                </div>
+                <h2 class="slide-header">Common <span class="text-gradient">Questions</span></h2>
+                <p class="slide-subheader">Great questions to think about. Here's what sets us apart from the rest.</p>
+                <div class="faq-grid">
+                    <div class="faq-card">
+                        <h4>Is the quality really good at $10 per hour?</h4>
+                        <p>Yes. Callers are sourced from the top 1% of applicants and undergo rigorous training. The rate reflects geographic wage efficiency — not quality compromise.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h4>How are leads qualified?</h4>
+                        <p>Every lead goes through a structured qualification process. Motivation, timeline, and fit are verified before it ever reaches your calendar.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h4>Will you integrate with my CRM?</h4>
+                        <p>All leads are delivered via Google Sheets for full transparency, plus weekly check-ins to make sure the campaign is running exactly how you want it.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h4>Is this compliant with TCPA and DNC?</h4>
+                        <p>Absolutely. All data is run through DNC scrubbing and adheres to TCPA regulations at both federal and state levels.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h4>How fast can we start?</h4>
+                        <p>Typical onboarding is 3–5 business days. If we get paperwork signed on Friday, we can more than likely get you started by Monday.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h4>Do I need to bring my own data?</h4>
+                        <p>No. Custom targeted data lists are built for you — up to 12,000 records tailored to your market. Already have data? That works too.</p>
+                    </div>
+                    <div class="faq-card">
+                        <h4>When do billable hours start?</h4>
+                        <p>Your billable hours don't start until your first lead comes in. You'll never pay for setup time or ramp-up — only for active, productive calling.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">10</span>
+            </div>
+        </section>
+
+        <!-- ============ SLIDE 11: CTA ============ -->
+        <section class="slide" data-slide="11">
+            <div class="slide-content slide-center-content">
+                <div class="brand-bar brand-bar--center">
+                    <div class="brand-logo">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2L2 22h24L14 2z" fill="none" stroke="var(--teton-blue)" stroke-width="2"/>
+                            <path d="M14 8L8 20h12L14 8z" fill="none" stroke="var(--teton-sky)" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                        <span class="brand-name">Teton Reach</span>
+                    </div>
+                </div>
+                <h2 class="slide-header slide-header--cta">Stop Cold Calling.<br><span class="gradient-stroke-text">Start Closing Deals.</span></h2>
+                <p class="cta-subtext">Your best callers are prospecting and ready for deployment. Follow this simple path to a full pipeline.</p>
+                <div class="cta-steps">
+                    <div class="cta-step">
+                        <div class="cta-step-num">01</div>
+                        <div class="cta-step-content">
+                            <h4>Book a Call</h4>
+                            <p>5-minute intro — your market, territory, and goals are mapped out.</p>
+                        </div>
+                    </div>
+                    <div class="cta-step">
+                        <div class="cta-step-num">02</div>
+                        <div class="cta-step-content">
+                            <h4>Strategy Session</h4>
+                            <p>A custom prospecting campaign is built and tailored to your pipeline.</p>
+                        </div>
+                    </div>
+                    <div class="cta-step">
+                        <div class="cta-step-num">03</div>
+                        <div class="cta-step-content">
+                            <h4>Onboard & Launch</h4>
+                            <p>Data, dialer, and callers are live within days — not weeks.</p>
+                        </div>
+                    </div>
+                    <div class="cta-step">
+                        <div class="cta-step-num">04</div>
+                        <div class="cta-step-content">
+                            <h4>Receive & Scale</h4>
+                            <p>Qualified leads hit your calendar. Close deals. Add capacity as you grow.</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="cta-btn cta-btn--large" id="finalCtaBtn">BOOK YOUR STRATEGY CALL NOW →</a>
+                <p class="cta-closing">Start filling your pipeline with zero hassle — your callers are ready.</p>
+            </div>
+            <div class="slide-footer">
+                <span class="footer-brand">Teton Reach</span>
+                <span class="footer-num">11</span>
+            </div>
+        </section>
+
+
+
+    </div>
+
+    <!-- Powered by footer -->
+    <div class="powered-by">
+        <span>Powered by Teton Reach</span>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <h3 class="modal-title">Book Your <span class="text-gradient">Strategy Call</span></h3>
+            <p class="modal-sub">Fill out the form below and a Teton Reach strategist will reach out within 24 hours to schedule your free consultation.</p>
+            <form class="modal-form" id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formName">Full Name</label>
+                        <input type="text" id="formName" name="name" placeholder="John Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="formPhone">Phone</label>
+                        <input type="tel" id="formPhone" name="phone" placeholder="(555) 123-4567" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formEmail">Email</label>
+                    <input type="email" id="formEmail" name="email" placeholder="john@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="formVertical">Business Type</label>
+                    <select id="formVertical" name="vertical" required>
+                        <option value="" disabled selected>Select your industry</option>
+                        <option value="pest-control">Pest Control</option>
+                        <option value="roofing">Roofing</option>
+                        <option value="solar">Solar</option>
+                        <option value="hvac">HVAC</option>
+                        <option value="landscaping">Landscaping</option>
+                        <option value="real-estate">Real Estate</option>
+                        <option value="wholesaling">Wholesaling</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="formNotes">Anything else? <span style="opacity:0.5">(optional)</span></label>
+                    <textarea id="formNotes" name="notes" rows="3" placeholder="Tell us about your business, territory, or goals..."></textarea>
+                </div>
+                <button type="submit" class="cta-btn cta-btn--large modal-submit">SUBMIT &amp; BOOK YOUR CALL →</button>
+            </form>
+            <div class="modal-success" id="modalSuccess" style="display:none;">
+                <div class="success-icon">✓</div>
+                <h3>You’re In!</h3>
+                <p>A Teton Reach strategist will reach out within 24 hours to schedule your free consultation call.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="deck.js" defer></script>
+</body>
+</html>
