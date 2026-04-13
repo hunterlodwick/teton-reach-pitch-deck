@@ -452,10 +452,10 @@
             { x: 0.4,  y: 0.3,  r: 400, color: [60,140,200],    alpha: 0.18, speed: 0.0007, phase: 5.5 }
         ];
 
-        // Constellation particles — balanced visibility
+        // Constellation particles — visible but not overtaking
         var stars = [];
-        var numStars = 60;
-        var connectionDist = 120;
+        var numStars = 90;
+        var connectionDist = 160;
 
         for (var si = 0; si < numStars; si++) {
             stars.push({
@@ -463,8 +463,8 @@
                 y: Math.random() * window.innerHeight,
                 vx: (Math.random() - 0.5) * 0.35,
                 vy: (Math.random() - 0.5) * 0.25,
-                radius: 1 + Math.random() * 1.5,
-                alpha: 0.2 + Math.random() * 0.35,
+                radius: 1.2 + Math.random() * 2,
+                alpha: 0.35 + Math.random() * 0.4,
                 twinkleSpeed: 0.002 + Math.random() * 0.003,
                 twinklePhase: Math.random() * Math.PI * 2
             });
@@ -516,9 +516,9 @@
                     var dy = stars[a].y - stars[c].y;
                     var dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < connectionDist) {
-                        var lineAlpha = (1 - dist / connectionDist) * 0.15;
-                        ctx.strokeStyle = 'rgba(126,200,227,' + lineAlpha + ')';
-                        ctx.lineWidth = 0.5;
+                        var lineAlpha = (1 - dist / connectionDist) * 0.3;
+                        ctx.strokeStyle = 'rgba(150,210,235,' + lineAlpha + ')';
+                        ctx.lineWidth = 0.7;
                         ctx.beginPath();
                         ctx.moveTo(stars[a].x, stars[a].y);
                         ctx.lineTo(stars[c].x, stars[c].y);
@@ -531,8 +531,8 @@
             for (var k = 0; k < stars.length; k++) {
                 var st = stars[k];
                 var twinkle = 0.5 + 0.5 * Math.sin(t * st.twinkleSpeed + st.twinklePhase);
-                var starAlpha = st.alpha * (0.35 + twinkle * 0.55);
-                ctx.fillStyle = 'rgba(200,225,240,' + starAlpha + ')';
+                var starAlpha = st.alpha * (0.5 + twinkle * 0.5);
+                ctx.fillStyle = 'rgba(210,230,245,' + starAlpha + ')';
                 ctx.beginPath();
                 ctx.arc(st.x, st.y, st.radius * (0.8 + twinkle * 0.4), 0, Math.PI * 2);
                 ctx.fill();
