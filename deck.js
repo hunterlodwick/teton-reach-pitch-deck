@@ -531,7 +531,7 @@
             for (var k = 0; k < stars.length; k++) {
                 var st = stars[k];
                 var twinkle = 0.5 + 0.5 * Math.sin(t * st.twinkleSpeed + st.twinklePhase);
-                var starAlpha = st.alpha * (0.5 + twinkle * 0.5);
+                var starAlpha = st.alpha * (0.42 + twinkle * 0.58);
                 ctx.fillStyle = 'rgba(210,230,245,' + starAlpha + ')';
                 ctx.beginPath();
                 ctx.arc(st.x, st.y, st.radius * (0.8 + twinkle * 0.4), 0, Math.PI * 2);
