@@ -257,6 +257,11 @@
     // Apply to .text-gradient spans inside slide headers
     document.querySelectorAll('.slide-header .text-gradient').forEach(function (el) {
         var finalText = el.textContent;
+        var header = el.closest('.slide-header');
+        if (!header) return;
+
+        // Start with scrambled placeholder text
+        el.textContent = '';
 
         var scramObs = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -265,8 +270,8 @@
                     scramObs.disconnect();
                 }
             });
-        }, { threshold: 0.1 });
-        scramObs.observe(el);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        scramObs.observe(header);
     });
 
     /* ============================
