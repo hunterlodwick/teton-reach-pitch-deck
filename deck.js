@@ -158,8 +158,9 @@
         document.body.style.overflow = '';
     }
 
-    // Attach to all CTA buttons
+    // Attach to all CTA buttons EXCEPT those inside the modal
     document.querySelectorAll('.cta-btn, .pricing-cta').forEach(function (btn) {
+        if (btn.closest('.modal-overlay')) return; // skip modal submit button
         btn.addEventListener('click', openModal);
     });
 

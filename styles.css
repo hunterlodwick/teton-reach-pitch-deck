@@ -243,55 +243,26 @@ a:hover {
     border-radius: 20px;
 }
 
-/* === TEXT GRADIENT + TYPEWRITER REVEAL === */
+/* === TEXT GRADIENT === */
 .text-gradient {
     background: linear-gradient(135deg, var(--teton-sky), var(--teton-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    display: inline-block;
-    vertical-align: baseline;
-    position: relative;
 }
 
-/* Typewriter cursor line */
-.text-gradient::after {
-    content: '';
-    position: absolute;
-    right: -2px;
-    top: 0.1em;
-    bottom: 0.1em;
-    width: 3px;
-    background: var(--teton-accent);
-    animation: typewriterBlink 0.7s step-end infinite;
+/* Typewriter reveal — only on slide headers, not modal */
+.slide-header .text-gradient {
+    clip-path: inset(0 100% 0 0);
 }
 
-/* Reveal mask — slides from left to right */
-.slide.is-visible .text-gradient {
+.slide.is-visible .slide-header .text-gradient {
     animation: typeReveal 1.4s steps(20, end) forwards;
 }
 
 @keyframes typeReveal {
-    0% {
-        clip-path: inset(0 100% 0 0);
-    }
-    100% {
-        clip-path: inset(0 0 0 0);
-    }
-}
-
-@keyframes typewriterBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Hide cursor after animation completes */
-.slide.is-visible .text-gradient::after {
-    animation: typewriterBlink 0.7s step-end 4, typewriterFade 0s 2.8s forwards;
-}
-
-@keyframes typewriterFade {
-    to { opacity: 0; }
+    0%   { clip-path: inset(0 100% 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
 }
 
 /* === HEADERS === */
@@ -1105,7 +1076,94 @@ a:hover {
 }
 
 /* ============================================
-   SLIDE 11: CTA
+   SLIDE 11: GOOD FIT / NOT A FIT
+   ============================================ */
+.fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.fit-column {
+    background: var(--teton-card);
+    border: 1px solid rgba(91, 155, 213, 0.08);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+}
+
+.fit-column:hover {
+    transform: translateY(-2px);
+}
+
+.fit-column-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(91, 155, 213, 0.1);
+}
+
+.fit-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.fit-good-header .fit-icon {
+    background: rgba(78, 205, 196, 0.15);
+    color: var(--teton-accent);
+}
+
+.fit-bad-header .fit-icon {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}
+
+.fit-column-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.fit-good { border-top: 3px solid var(--teton-accent); }
+.fit-bad { border-top: 3px solid #ef4444; }
+
+.fit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.fit-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--teton-silver);
+    line-height: 1.55;
+}
+
+.fit-check, .fit-x {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 1px;
+}
+
+.fit-check { color: var(--teton-accent); }
+.fit-x { color: #ef4444; }
+
+/* ============================================
+   SLIDE 12: CTA
    ============================================ */
 .cta-subtext {
     font-size: 18px;
@@ -1850,6 +1908,11 @@ a:hover {
 
     .faq-grid {
         grid-template-columns: 1fr;
+    }
+
+    .fit-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .cta-steps {
