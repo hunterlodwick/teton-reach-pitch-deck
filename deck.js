@@ -257,8 +257,6 @@
     // Apply to .text-gradient spans inside slide headers
     document.querySelectorAll('.slide-header .text-gradient').forEach(function (el) {
         var finalText = el.textContent;
-        var parentSlide = el.closest('.slide');
-        if (!parentSlide) return;
 
         var scramObs = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -267,8 +265,8 @@
                     scramObs.disconnect();
                 }
             });
-        }, { threshold: 0.4 });
-        scramObs.observe(parentSlide);
+        }, { threshold: 0.1 });
+        scramObs.observe(el);
     });
 
     /* ============================
