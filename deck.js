@@ -209,65 +209,18 @@
     });
 
     /* ============================
-       SLIDE NAVIGATION
+       SCROLL VISIBILITY (for animations)
        ============================ */
     const slides = document.querySelectorAll('.slide');
-    const progressBar = document.getElementById('progressBar');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const totalSlides = slides.length;
-    let currentSlide = 0;
-    let touchStartY = 0, touchStartX = 0, lastScrollTime = 0;
-    const scrollCooldown = 800;
-
-    function updateProgress() { progressBar.style.width = ((currentSlide + 1) / totalSlides) * 100 + '%'; }
-    function updateNavButtons() { prevBtn.disabled = currentSlide === 0; nextBtn.disabled = currentSlide === totalSlides - 1; }
-    function updateDots(idx) {
-        var dots = document.querySelectorAll('.slide-dot');
-        dots.forEach(function (d, j) { d.classList.toggle('active', j === idx); });
-    }
-    function goToSlide(i) {
-        if (i < 0 || i >= totalSlides) return;
-        currentSlide = i;
-        slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        updateProgress(); updateNavButtons(); updateDots(i);
-    }
-    function nextSlide() { if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1); }
-    function prevSlide() { if (currentSlide > 0) goToSlide(currentSlide - 1); }
 
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
-                const idx = Array.from(slides).indexOf(entry.target);
-                if (idx !== -1) { currentSlide = idx; updateProgress(); updateNavButtons(); }
+            if (entry.isIntersecting && entry.intersectionRatio > 0.2) {
                 entry.target.classList.add('is-visible');
             }
         });
-    }, { threshold: [0.35] });
+    }, { threshold: [0.2] });
     slides.forEach(s => obs.observe(s));
-
-    document.addEventListener('keydown', function (e) {
-        if (modal.classList.contains('active')) return; // Don't navigate while modal open
-        if (['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); nextSlide(); }
-        else if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); prevSlide(); }
-        else if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
-        else if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides - 1); }
-    });
-
-    document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; touchStartX = e.touches[0].clientX; }, { passive: true });
-    document.addEventListener('touchend', e => {
-        const dy = touchStartY - e.changedTouches[0].clientY;
-        const dx = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(dy) > 50 && Math.abs(dy) > Math.abs(dx)) {
-            if (Date.now() - lastScrollTime < scrollCooldown) return;
-            lastScrollTime = Date.now();
-            dy > 0 ? nextSlide() : prevSlide();
-        }
-    }, { passive: true });
-
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
-    updateProgress(); updateNavButtons();
     slides[0].classList.add('is-visible');
 
     /* ============================
@@ -349,33 +302,7 @@
         });
     });
 
-    /* ============================
-       FEATURE 1: SLIDE INDICATOR DOTS
-       ============================ */
-    var dotsContainer = document.getElementById('slideDots');
-    if (dotsContainer) {
-        for (var di = 0; di < totalSlides; di++) {
-            var dot = document.createElement('button');
-            dot.className = 'slide-dot' + (di === 0 ? ' active' : '');
-            dot.dataset.slide = di;
-            dot.setAttribute('aria-label', 'Go to slide ' + (di + 1));
-            dot.addEventListener('click', function () {
-                goToSlide(parseInt(this.dataset.slide));
-            });
-            dotsContainer.appendChild(dot);
-        }
-    }
 
-    // Also update dots on scroll-based slide change
-    var dotsObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
-                var idx = Array.from(slides).indexOf(entry.target);
-                if (idx !== -1) updateDots(idx);
-            }
-        });
-    }, { threshold: [0.35] });
-    slides.forEach(function (s) { dotsObs.observe(s); });
 
 
     /* ============================
@@ -547,26 +474,5 @@
         }
         requestAnimationFrame(drawScene);
     }
-
-    /* ============================
-       FEATURE 4: ENHANCED SWIPE NAVIGATION
-       ============================ */
-    // Horizontal swipe support (in addition to existing vertical)
-    document.addEventListener('touchstart', function (e) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    document.addEventListener('touchend', function (e) {
-        var dx = touchStartX - e.changedTouches[0].clientX;
-        var dy = touchStartY - e.changedTouches[0].clientY;
-
-        // Horizontal swipe: lower threshold (40px) and must be more horizontal than vertical
-        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-            if (Date.now() - lastScrollTime < scrollCooldown) return;
-            lastScrollTime = Date.now();
-            dx > 0 ? nextSlide() : prevSlide();
-        }
-    }, { passive: true });
 
 })();
