@@ -182,8 +182,13 @@
         const obj = {};
         data.forEach(function (v, k) { obj[k] = v; });
 
-        // Log to console for now — connect to Formspree, webhook, or email API later
-        console.log('Teton Reach Lead:', JSON.stringify(obj, null, 2));
+        // Send to Google Sheets via Apps Script
+        fetch('https://script.google.com/macros/s/AKfycbzfpEylM-brhh_Kc58en2YoJw9nBQ94w-ghdW4C7X1CaAsILduQO2T9vI5EqnYqNnvw5A/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(obj)
+        }).catch(function (err) { console.warn('Sheet submit error:', err); });
 
         // Show success state
         bookingForm.style.display = 'none';
