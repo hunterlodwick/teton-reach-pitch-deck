@@ -243,12 +243,55 @@ a:hover {
     border-radius: 20px;
 }
 
-/* === TEXT GRADIENT === */
+/* === TEXT GRADIENT + TYPEWRITER REVEAL === */
 .text-gradient {
     background: linear-gradient(135deg, var(--teton-sky), var(--teton-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Typewriter cursor line */
+.text-gradient::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 0.1em;
+    bottom: 0.1em;
+    width: 3px;
+    background: var(--teton-accent);
+    animation: typewriterBlink 0.7s step-end infinite;
+}
+
+/* Reveal mask — slides from left to right */
+.slide.is-visible .text-gradient {
+    animation: typeReveal 1.4s steps(20, end) forwards;
+}
+
+@keyframes typeReveal {
+    0% {
+        clip-path: inset(0 100% 0 0);
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes typewriterBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Hide cursor after animation completes */
+.slide.is-visible .text-gradient::after {
+    animation: typewriterBlink 0.7s step-end 4, typewriterFade 0s 2.8s forwards;
+}
+
+@keyframes typewriterFade {
+    to { opacity: 0; }
 }
 
 /* === HEADERS === */

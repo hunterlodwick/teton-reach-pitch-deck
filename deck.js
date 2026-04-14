@@ -223,60 +223,7 @@
     slides.forEach(s => obs.observe(s));
     slides[0].classList.add('is-visible');
 
-    /* ============================
-       CINEMATIC MODULE 2: TEXT SCRAMBLE
-       ============================ */
-    var scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
-
-    function scrambleText(el, finalText, duration) {
-        duration = duration || 1200;
-        var len = finalText.length;
-        var startTime = null;
-
-        function frame(ts) {
-            if (!startTime) startTime = ts;
-            var elapsed = ts - startTime;
-            var progress = Math.min(elapsed / duration, 1);
-            var html = '';
-
-            for (var i = 0; i < len; i++) {
-                if (finalText[i] === ' ') { html += ' '; continue; }
-                var charThreshold = (i / len) * 0.7 + 0.15;
-                if (progress >= charThreshold) {
-                    html += '<span class="scramble-char resolved">' + finalText[i] + '</span>';
-                } else {
-                    html += '<span class="scramble-char scrambling">' + scrambleChars[Math.floor(Math.random() * scrambleChars.length)] + '</span>';
-                }
-            }
-            el.innerHTML = html;
-            if (progress < 1) requestAnimationFrame(frame);
-        }
-        requestAnimationFrame(frame);
-    }
-
-    // Apply to .text-gradient spans inside slide headers (scroll-based for max compatibility)
-    var scrambleTargets = [];
-    document.querySelectorAll('.slide-header .text-gradient').forEach(function (el) {
-        scrambleTargets.push({ el: el, finalText: el.textContent, triggered: false });
-    });
-
-    function checkScrambleTargets() {
-        var vh = window.innerHeight;
-        for (var i = 0; i < scrambleTargets.length; i++) {
-            var t = scrambleTargets[i];
-            if (t.triggered) continue;
-            var rect = t.el.getBoundingClientRect();
-            // Trigger when element top enters the bottom 85% of viewport
-            if (rect.top < vh * 0.85 && rect.bottom > 0) {
-                t.triggered = true;
-                scrambleText(t.el, t.finalText, 1200);
-            }
-        }
-    }
-
-    window.addEventListener('scroll', checkScrambleTargets, { passive: true });
-    // Also check on load in case elements are already visible
-    checkScrambleTargets();
+    /* Scramble text module removed — replaced with CSS typewriter */
 
     /* ============================
        CINEMATIC MODULE 3: SPOTLIGHT BORDER CARDS
