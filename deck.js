@@ -254,25 +254,29 @@
         requestAnimationFrame(frame);
     }
 
-    // Apply to .text-gradient spans inside slide headers
+    // Apply to .text-gradient spans inside slide headers (scroll-based for max compatibility)
+    var scrambleTargets = [];
     document.querySelectorAll('.slide-header .text-gradient').forEach(function (el) {
-        var finalText = el.textContent;
-        var header = el.closest('.slide-header');
-        if (!header) return;
-
-        // Start with scrambled placeholder text
-        el.textContent = '';
-
-        var scramObs = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    scrambleText(el, finalText, 1200);
-                    scramObs.disconnect();
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        scramObs.observe(header);
+        scrambleTargets.push({ el: el, finalText: el.textContent, triggered: false });
     });
+
+    function checkScrambleTargets() {
+        var vh = window.innerHeight;
+        for (var i = 0; i < scrambleTargets.length; i++) {
+            var t = scrambleTargets[i];
+            if (t.triggered) continue;
+            var rect = t.el.getBoundingClientRect();
+            // Trigger when element top enters the bottom 85% of viewport
+            if (rect.top < vh * 0.85 && rect.bottom > 0) {
+                t.triggered = true;
+                scrambleText(t.el, t.finalText, 1200);
+            }
+        }
+    }
+
+    window.addEventListener('scroll', checkScrambleTargets, { passive: true });
+    // Also check on load in case elements are already visible
+    checkScrambleTargets();
 
     /* ============================
        CINEMATIC MODULE 3: SPOTLIGHT BORDER CARDS
