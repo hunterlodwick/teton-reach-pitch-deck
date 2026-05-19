@@ -217,6 +217,20 @@ a:hover {
     gap: 10px;
 }
 
+.brand-logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 50%;
+    mix-blend-mode: lighten;
+    flex-shrink: 0;
+}
+
+.brand-logo-img--lg {
+    width: 36px;
+    height: 36px;
+}
+
 .brand-name {
     font-size: 16px;
     font-weight: 700;
